@@ -26,13 +26,13 @@ export default function Model() {
 
                     <ul>
                         <li>{policingArea}: A policing area</li>
-                        <li><InlineMath math = {`j`}/>: An event number</li>
+                        <li><InlineMath math = {`j`}/>: Index of a crime in {policingArea}</li>
                         <li>{currentTime}: The current time</li>
                         <li><InlineMath math = {`t^j_n`}/>: The time when the j-th crime occurred in {policingArea}</li>
                         <li><InlineMath math = {`\\lambda_n(t)`}/>: The probabilistic rate of crimes in {policingArea} at time {currentTime}</li>
                         <li><InlineMath math = {`\\mu_n`}/>: The baseline rate of crimes in {policingArea}</li>
-                        <li><InlineMath math = {`\\sum_{t^j_n \\lt t}`}/>: Sum over crimes taking place in {policingArea} before the current time {currentTime}</li>
-                        <li><InlineMath math = {`\\theta`}/>: The number of crimes taking place as a result of a crime</li>
+                        <li><InlineMath math = {`\\sum_{t^j_n \\lt t}`}/>: Sum over crimes occurring in {policingArea} before the current time {currentTime}</li>
+                        <li><InlineMath math = {`\\theta`}/>: The average expected number of future crimes triggered by a crime</li>
                         <li><InlineMath math = {`\\omega`}/>: Rate of temporal decay</li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@ export default function Model() {
                     <ul>
                         <li><InlineMath math = {`t - t^j_n`}/>: How long has passed since the j-th crime</li>
                         <li>
-                            <InlineMath math = {`e^{-\\omega(t - t^j_n)}`}/>: How quickly each crime's effects fade over time
+                            <InlineMath math = {`e^{-\\omega(t - t^j_n)}`}/>: How the effect of a crime fades over time
                             <br/>
                             → Recent crimes make larger contributions, while old crimes make smaller contributions
                         </li>
@@ -53,7 +53,7 @@ export default function Model() {
                             → The "triggering kernel" modeling near-repeat and contagion effects
                         </li>
                         <li>
-                            <InlineMath math = {`\\sum_{t^j_n \\lt t} \\theta \\omega e^{-\\omega(t - t^j_n)}`} />: Sum up the risks caused by past crimes in {policingArea}
+                            <InlineMath math = {`\\sum_{t^j_n \\lt t} \\theta \\omega e^{-\\omega(t - t^j_n)}`} />: Sum up the risks triggered by past crimes in {policingArea}
                         </li>
                     </ul>
                 </div>
@@ -67,7 +67,7 @@ export default function Model() {
 
             <div className = "bg-cream p-5 rounded-xl space-3-gap">
                 <div>
-                    <h1 className = "text-center text-xl font-bold">Probability of a crime taking place <br/> as a result of a past crime vs. on its own</h1>
+                    <h1 className = "text-center text-xl font-bold">Probability that a crime was <br/> triggered vs a background crime</h1>
                 
                     <h1 className = "text-center">Probability of being triggered by a past crime</h1>
                     
@@ -77,7 +77,7 @@ export default function Model() {
                         }
                     />
 
-                    <h1 className = "text-center">Probability of happening on its own</h1>
+                    <h1 className = "text-center">Probability of being a background crime</h1>
 
                     <BlockMath
                         math = {
@@ -90,8 +90,8 @@ export default function Model() {
                     <h1 className = "text-center text-lg font-bold">Notations</h1>
 
                     <ul>
-                        <li><InlineMath math = {`p^{ij}_n`}/>: The probability that crime {currentCrime} in {policingArea} is caused by past crime {pastCrime} in {policingArea}</li>
-                        <li><InlineMath math = {`p^j_n`}/>: The probability that crime {currentCrime} in {policingArea} takes place on its own</li>
+                        <li><InlineMath math = {`p^{ij}_n`}/>: The probability that crime {currentCrime} in {policingArea} is triggered by past crime {pastCrime} in {policingArea}</li>
+                        <li><InlineMath math = {`p^j_n`}/>: The probability that crime {currentCrime} in {policingArea} is a backrgound crime in {policingArea}</li>
                     </ul>
                 </div>
 
@@ -102,9 +102,9 @@ export default function Model() {
                         <li>
                             <InlineMath math = {`\\theta \\omega e^{-\\omega(t^i_n - t^j_n)}`}/>: How much crime {pastCrime} contributes to crime {currentCrime}
                         <br/>
-                            → If crime {pastCrime} takes place shortly before crime {currentCrime}, the contribution is large; if crime {pastCrime} takes place long ago, the contribution is small
+                            → If crime {pastCrime} occurrs shortly before crime {currentCrime}, the contribution is large; if crime {pastCrime} occurs long ago, the contribution is small
                         </li>
-                        <li><InlineMath math = {`\\lambda_n(t^j_n)`}/>: The crime rate in {policingArea} when crime {currentCrime} takes place</li>
+                        <li><InlineMath math = {`\\lambda_n(t^j_n)`}/>: The crime rate in {policingArea} when crime {currentCrime} occurs</li>
 
                     </ul>
                 </div>
@@ -114,14 +114,14 @@ export default function Model() {
 
                     <ul>
                         <li>
-                            Probability of being triggered by past crime {pastCrime}: 
+                            Probability that crime {currentCrime} was triggered by crime {pastCrime}: 
                             <br/>
-                            <BlockMath math = {`\\displaystyle\\frac{\\text{Contribution of event } i}{\\text{Crime rate at time of crime } j}`}/>
+                            <BlockMath math = {`\\displaystyle{\\frac{\\text{Contribution of event } i}{\\text{Crime rate in } n \\text{ at the time of crime } j}}`}/>
                         </li>
                         <li>
-                            Probability of taking place on its own:
+                            Probability that crime {currentCrime} is a background crime:
                             <br/>
-                            <BlockMath math = {`\\displaystyle\\frac{\\text{Contribution of baseline crime rate}}{\\text{Crime rate at time of crime } j}`}/>
+                            <BlockMath math = {`\\displaystyle{\\frac{\\text{Contribution of baseline crime rate}}{\\text{Crime rate in } n \\text{ at the time of crime } j}}`}/>
                         </li>
                     </ul>
 
@@ -156,7 +156,7 @@ export default function Model() {
 
                     <ul>
                         <li><InlineMath math = {`\\sum_n`}/>: Sum over all policing areas</li>
-                        <li><InlineMath math = {`\\sum_{i \\lt j}`}/>: Sum over all pairs where crime {pastCrime} happening before crime {currentCrime}</li>
+                        <li><InlineMath math = {`\\sum_{i \\lt j}`}/>: Sum over all pairs where crime {pastCrime} occurs before crime {currentCrime}</li>
                         <li><InlineMath math = {`T`}/>: Length of observation</li>
                     </ul>
                 </div>
@@ -165,10 +165,10 @@ export default function Model() {
                     <ul>
                         <h1 className = "text-center text-lg font-bold">Explanation</h1>
 
-                        <li><InlineMath math = {`\\sum_n \\sum_{i \\lt j} p^{ij}_n`}/>: Sum of the probabilistic rate of triggering across all crime {pastCrime} - crime {currentCrime} pairs in all policing areas</li>
-                        <li><InlineMath math = {`\\sum_n \\sum_{i \\lt j} p^{ij}_n (t^j_n - t^i_n)`}/>: The above result multiplied by the time gap between crime {pastCrime} and crime {currentCrime} in all policing areas</li>
-                        <li><InlineMath math = {`\\sum_n \\sum_j p^j_n`}/>: Sum of the probabilistic rate of being a background crime over all crimes in all policing areas</li>
-                        <li><InlineMath math = {`\\sum_n \\sum_j 1`} />: The total number of crimes in all policing areas</li>
+                        <li><InlineMath math = {`\\sum_n \\sum_{i \\lt j} p^{ij}_n`}/>: Sum of the probabilities of triggering across all crime {pastCrime} - crime {currentCrime} pairs and all policing areas</li>
+                        {/* <li><InlineMath math = {`\\sum_n \\sum_{i \\lt j} p^{ij}_n (t^j_n - t^i_n)`}/>: The total triggering time gaps</li> */}
+                        <li><InlineMath math = {`\\sum_n \\sum_j p^j_n`}/>: Sum of the probabilities of being a background crime across all crimes and all policing areas</li>
+                        <li><InlineMath math = {`\\sum_n \\sum_j 1`} />: The total number of crimes across all policing areas</li>
                     </ul>
                 </div>
 
