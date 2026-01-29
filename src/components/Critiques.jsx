@@ -1,7 +1,7 @@
 export default function Review() {
     return (
-        <div className = "bg-purple space-y-5 p-3">
-            <h1 className = "text-5xl text-center font-amaticsc font-bold text-blue">Critiques</h1>
+        <div className = "bg-orange space-y-5 p-3">
+            <h1 className = "text-5xl text-center font-amaticsc font-bold text-cream">Critiques</h1>
 
             <div className = "p-5 gap-5 grid md:grid-cols-3">
                 <div className = "bg-cream p-5 rounded-xl space-3-gap">
