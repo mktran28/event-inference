@@ -36,7 +36,7 @@ export default function Model() {
                             <li><InlineMath math = {`\\lambda_n(t)`}/>: The probabilistic rate of crimes in {policingArea} at time {currentTime}</li>
                             <li><InlineMath math = {`\\mu_n`}/>: The baseline rate of crimes in {policingArea}</li>
                             <li><InlineMath math = {`\\sum_{t^j_n \\lt t}`}/>: Sum over crimes occurring in {policingArea} before the current time {currentTime}</li>
-                            <li><InlineMath math = {`\\theta`}/>: The average expected number of future crimes triggered by a crime</li>
+                            <li><InlineMath math = {`\\theta`}/>: The average expected number of future crimes triggered by other crimes</li>
                             <li><InlineMath math = {`\\omega`}/>: Rate of temporal decay</li>
                         </ul>
                     </div>
@@ -183,7 +183,7 @@ export default function Model() {
                             <li>
                                 New rate of temporal decay:
                                 <br/>
-                                <BlockMath math = {`\\displaystyle{\\frac{\\text{Expected number of crimes triggered}}{\\text{Total triggering time gaps}}}`}/>
+                                <BlockMath math = {`\\displaystyle{\\frac{\\text{Expected number of triggered crimes}}{\\text{Total triggering time gaps}}}`}/>
                             </li>
                             <li>
                                 New baseline crime rate:
@@ -192,7 +192,7 @@ export default function Model() {
                             </li>
                             <li>
                                 New rate of being triggered by another crime:
-                                <BlockMath math = {`\\displaystyle{\\frac{\\text{Expected number of crimes triggered}}{\\text{Total number of crimes}}}`}/>
+                                <BlockMath math = {`\\displaystyle{\\frac{\\text{Expected number of triggered crimes}}{\\text{Total number of crimes}}}`}/>
                             </li>
                         </ul>
                     </div>

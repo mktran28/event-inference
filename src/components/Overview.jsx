@@ -5,7 +5,7 @@ export default function Overview() {
         <div className = "bg-purple space-y-5 p-3">
             <h1 className = "text-5xl text-center font-amaticsc font-bold text-blue">Overview</h1>
 
-            <div className = "max-w-5xl mx-auto text-center space-y-5">
+            <div className = "max-w-4xl mx-auto text-center space-y-5">
                 <div>
                     <h1 className = "text-xl font-bold">What is predictive policing?</h1>
 
@@ -24,7 +24,7 @@ export default function Overview() {
                     <div>
                         PredPol (short for "predictive policing") was one of the first and most popular predictive policing software. 
                         The software analyzes historical crime data to forecast where and when crimes may occur, thereby identifying crime "hotspots" for police patrols. 
-                        It was created in 2010 as a collaborative project between the Los Angeles Police Department and the University of California, Los Angeles, and was rebranded as Geolitica in 2021.
+                        PredPol was created in 2010 as a collaborative project between the Los Angeles Police Department and the University of California, Los Angeles, and was rebranded as Geolitica in 2021.
                     </div>
                 </div>
 
@@ -36,8 +36,8 @@ export default function Overview() {
                         ETAS was originally used to detect "hotspots" for earthquakes and adapted to detect crime "hotspots" in PredPol.
                         In general, the model identifies short-term and long-term hotspots 
                         and uses the Expectation-Maximization (EM) algorithm to assess their risks.
-                        It assumes that background events naturally occur at a constant rate <InlineMath math = {`\\mu`} />,
-                        each event can trigger <InlineMath math = {`N`}/> other events, 
+                        It assumes that background crimes naturally occur at a constant rate <InlineMath math = {`\\mu`} />,
+                        each event can trigger <InlineMath math = {`N`}/> other crimes, 
                         and the events have a contagious effect ("aftershock") that can be prevented by law enforcement.
                     </div>
                 </div>
